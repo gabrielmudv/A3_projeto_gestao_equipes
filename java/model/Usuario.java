@@ -1,0 +1,25 @@
+package model;
+
+public class Usuario {
+    private String nomeCompleto;
+    private String cpf;
+    private String email;
+    private String cargo;
+    private String login;
+    private String senha;
+    private String perfil; // administrador, gerente ou colaborador
+
+    public Usuario(String nomeCompleto, String cpf, String email, String cargo, String login, String senha, String perfil) {
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+        this.email = email;
+        this.cargo = cargo;
+        this.login = login;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
+
+    public String getNomeCompleto() { return nomeCompleto; }
+    public String getPerfil() { return perfil; }
+    public String getCargo() { return cargo; }
+}
