@@ -1,4 +1,4 @@
-# A3 - Projeto Integrador: Sistema de Gestão de Equipes e Projetos
+# A3 - Projeto Integrador: Sistema de Gestão de Equipes e Projetos (MVC)
 
 Este repositório contém a solução desenvolvida para a A3 (Avaliação Curricular) do curso de Bacharelado em Sistemas de Informação do Centro Universitário IBMR.
 
@@ -6,25 +6,20 @@ Este repositório contém a solução desenvolvida para a A3 (Avaliação Curric
 
 ## Proposta do Projeto
 
-O objetivo principal da atividade era aplicar os conceitos fundamentais de lógica de programação e estruturas de dados em Java para resolver um problema real de gestão corporativa. 
-
-A proposta exigia a criação de um sistema capaz de gerenciar os fluxos de trabalho de uma organização, cobrindo os seguintes requisitos essenciais:
-1. Cadastro e Listagem de Usuários: Diferenciando perfis de acesso (Administrador, Gerente e Colaborador).
-2. Cadastro e Listagem de Equipes: Permitindo agrupar colaboradores para focar em objetivos comuns.
-3. Cadastro e Listagem de Projetos: Vinculando prazos, status de entrega e um Gerente responsável pelo andamento.
+O objetivo principal da atividade é aplicar os conceitos de Programação Orientada a Objetos e estruturas de dados em Java para resolver um problema real de gestão corporativa, atendendo aos seguintes requisitos de negócio:
+1. **Cadastro de Usuários:** Recolha de Nome Completo, CPF, E-mail, Cargo, Login e Senha, com atribuição de perfis de acesso restritos (administrador, gerente ou colaborador).
+2. **Cadastro de Projetos:** Definição de Nome, Descrição, Data de Início, Data de Término Prevista, Status (planejado, em andamento, concluido, cancelado) e associação obrigatória a um Gerente responsável.
+3. **Cadastro de Equipes:** Mapeamento de Nome, Descrição e Usuários vinculados, permitindo que uma mesma equipe atue em múltiplos projetos simultaneamente.
 
 ---
 
-## Solução Desenvolvida
+## Solução Desenvolvida e Arquitetura
 
-Com o foco em entregar um código objetivo, funcional e de fácil manutenção, a solução optou por um modelo de arquitetura linear e simplificado, ideal para cenários de validação rápida de regras de negócio (PoC - Prova de Conceito).
+O sistema foi totalmente reestruturado seguindo o padrão de arquitetura **MVC (Model-View-Controller)**, garantindo a separação de responsabilidades, organização do código e manutenibilidade:
 
-### Destaques da Implementação:
-
-* Abordagem Linear (Single File): Todo o fluxo de execução, interface de usuário e persistência temporária foram centralizados na classe Main.java. Isso elimina o acoplamento desnecessário de pastas e facilita a distribuição do código-fonte.
-* Persistência em Memória Volátil: Utilização da estrutura nativa ArrayList do Java para armazenar e consultar dinamicamente os registros de usuários, equipes e projetos durante a execução do programa.
-* Interface via Console Interativa: Um menu numérico construído com a estrutura de repetição while e condicionais if/else, capturando as entradas do usuário em tempo real através da classe Scanner.
-* Carga Inicial de Dados (Seed): O sistema já inicia com registros previamente carregados na memória (como usuários de teste), permitindo que o avaliador teste as listagens e vínculos imediatamente, sem a necessidade de preencher dados do zero.
+* **Model (Camada de Modelo):** Contém as classes `Usuario.java`, `Equipe.java` e `Projeto.java`, que encapsulam os atributos solicitados e as regras de associação entre as entidades.
+* **Controller (Camada de Controlo):** A classe `GerenciadorController.java` centraliza as regras de negócio, métodos de busca por correspondência e a persistência de dados em memória volátil através da estrutura nativa `ArrayList`.
+* **View (Camada de Visão):** A classe `Main.java` atua como a interface do utilizador via console, processando o menu interativo e capturando os dados de entrada de forma segura com `Scanner`.
 
 ---
 
@@ -41,6 +36,5 @@ Com o foco em entregar um código objetivo, funcional e de fácil manutenção, 
 1. Certifique-se de ter o JDK e o Maven instalados na sua máquina.
 2. Clone este repositório:
    git clone https://github.com/gabrielmudv/A3_projeto_gestao_equipes.git
-3. Abra o projeto na sua IDE de preferência (recomendado: Apache NetBeans).
-4. Execute a classe principal Main.java (atalho F6 no NetBeans).
-5. Interaja com o sistema através do menu exibido no console do terminal.
+3. Abra o projeto no Apache NetBeans.
+4. Execute o projeto (atalho F6). O NetBeans está configurado para iniciar a execução a partir do pacote de visão (`view.Main`).
